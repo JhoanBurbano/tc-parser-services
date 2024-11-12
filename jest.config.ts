@@ -9,6 +9,8 @@ module.exports = {
   testMatch: [
     '**/__tests__/**/*.test.ts', // Asegura que solo los archivos .test.ts sean ejecutados
     '**/__tests__/**/*.spec.ts',
+    '**/e2e/**/*.test.ts',
+    '**/e2e/**/*.spec.ts',
   ],
   transform: {
     '^.+\\.tsx?$': [
