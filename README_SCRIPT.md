@@ -1,6 +1,6 @@
-## Despliegue en Google Cloud Run con `deploy.sh`
+## Despliegue en Google Cloud Run con `deploy_gcloud.sh`
 
-Este proyecto incluye un script de Bash (`deploy.sh`) que facilita el despliegue en Google Cloud Run. El script automatiza el proceso de configuración de variables de entorno, construcción de la imagen Docker, subida a Google Container Registry, y despliegue en Cloud Run.
+Este proyecto incluye un script de Bash (`deploy_gcloud.sh`) que facilita el despliegue en Google Cloud Run. El script automatiza el proceso de configuración de variables de entorno, construcción de la imagen Docker, subida a Google Container Registry, y despliegue en Cloud Run.
 
 ### Requisitos Previos
 
@@ -38,16 +38,16 @@ DATABASE_URL=your_database_url
 
 Guarda el archivo `.env` en la raíz del proyecto o especifica una ruta personalizada cuando ejecutes el script.
 
-### Uso del Script `deploy.sh`
+### Uso del Script `deploy_gcloud.sh`
 
-El script `deploy.sh` te guiará a través de los pasos necesarios para desplegar el proyecto en Google Cloud Run, solicitando la configuración necesaria y utilizando las variables de entorno desde el archivo `.env`.
+El script `deploy_gcloud.sh` te guiará a través de los pasos necesarios para desplegar el proyecto en Google Cloud Run, solicitando la configuración necesaria y utilizando las variables de entorno desde el archivo `.env`.
 
 #### 1. Hacer Ejecutable el Script
 
 Si el script no tiene permisos de ejecución, configúralos con el siguiente comando:
 
 ```bash
-chmod +x deploy.sh
+chmod +x deploy_gcloud.sh
 ```
 
 #### 2. Ejecutar el Script de Despliegue
@@ -55,7 +55,7 @@ chmod +x deploy.sh
 Ejecuta el siguiente comando para iniciar el despliegue:
 
 ```bash
-./deploy.sh
+./deploy_gcloud.sh
 
 # o usa el script del package.json para esto que integra los dos pasos anteriores
 yarn deploy
