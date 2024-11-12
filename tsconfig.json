@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "src",
+    "__tests__/question.controller.e2e.test.ts",
+    "__tests__/questionService.test.ts",
+    "__tests__/dateFormatter.test.ts",
+    "__tests__/questionController.test.ts"
+  ],
+  "exclude": ["node_modules", "dist", "__tests__", "e2e"]
+}
