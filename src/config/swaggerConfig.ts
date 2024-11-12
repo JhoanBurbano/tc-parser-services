@@ -18,7 +18,9 @@ const swaggerOptions: OAS3Options = {
     },
     servers: [
       {
-        url: `http://${process.env.SWAGGER_HOST || 'localhost'}:${process.env.SWAGGER_PORT || '3000'}`,
+        url:
+          CONFIG.SWAGGER.COMPLETE_URL ||
+          `http://${CONFIG.SWAGGER.HOST}:${CONFIG.SWAGGER.PORT}`,
         description: 'Servidor actual',
       },
       {
@@ -32,7 +34,7 @@ const swaggerOptions: OAS3Options = {
     ],
   },
   apis: [
-    process.env.NODE_ENV === 'production'
+    CONFIG.NODE_ENV === 'production'
       ? './dist/controllers/*.js'
       : './src/controllers/*.ts',
   ],

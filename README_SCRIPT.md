@@ -105,3 +105,59 @@ Ingrese la región de despliegue (default: us-central1):
 ### Despliegue Exitoso
 
 Al finalizar, el script mostrará el mensaje `Despliegue completado exitosamente.` y tu aplicación estará accesible desde la URL pública que Google Cloud Run proporciona.
+
+---
+
+# Alternativa a Cloud Build
+
+El uso de **Cloud Build** en Google Cloud no es estrictamente necesario para desplegar en Cloud Run, pero es conveniente en algunos casos, especialmente si prefieres no construir las imágenes Docker localmente. Aquí te explico cuándo y por qué podrías necesitar Cloud Build, y también cómo puedes evitarlo si prefieres no usarlo.
+
+### ¿Cuándo es necesario Cloud Build?
+
+1. **Si prefieres que Google gestione la construcción de la imagen Docker**:
+
+   - Cloud Build puede encargarse de construir tu imagen Docker desde el código fuente y luego subirla a Google Container Registry (GCR) automáticamente.
+   - Esto es útil si trabajas desde una máquina sin Docker instalado o si quieres simplificar el proceso.
+
+2. **Para integraciones automáticas y despliegues continuos (CI/CD)**:
+   - Si deseas configurar un flujo de CI/CD donde cada cambio en tu repositorio desencadena una nueva construcción y despliegue, Cloud Build es ideal. Puedes integrarlo con repositorios de GitHub o GitLab y hacer que el proceso de despliegue sea completamente automático.
+
+### ¿Es posible evitar Cloud Build?
+
+Sí, puedes evitar Cloud Build si prefieres construir y subir la imagen manualmente usando Docker localmente. Aquí están los pasos para hacerlo sin Cloud Build:
+
+#### Opción A: Construir y Subir la Imagen Manualmente con Docker y gcloud
+
+1. **Construye la Imagen Docker Localmente**:
+
+   - Desde el directorio donde tienes tu `Dockerfile`, ejecuta:
+     ```bash
+     docker build -t gcr.io/[PROJECT_ID]/[IMAGE_NAME] .
+     ```
+
+2. **Autentica Docker con Google Container Registry**:
+
+   - Usa el siguiente comando para autenticar Docker con GCR:
+     ```bash
+     gcloud auth configure-docker
+     ```
+
+3. **Sube la Imagen a Google Container Registry (GCR)**:
+
+   - Sube la imagen a GCR con el comando:
+     ```bash
+     docker push gcr.io/[PROJECT_ID]/[IMAGE_NAME]
+     ```
+
+4. **Despliega la Imagen en Cloud Run**:
+
+   - Una vez que la imagen esté en GCR, puedes desplegarla en Cloud Run sin usar Cloud Build:
+
+     ```bash
+     gcloud run deploy [SERVICE_NAME] \
+       --image gcr.io/[PROJECT_ID]/[IMAGE_NAME] \
+       --platform managed \
+       --region [REGION] \
+       --allow-unauthenticated
+       --set-env-vars "$ENV_VARS"
+     ```

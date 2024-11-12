@@ -18,6 +18,12 @@ export const CONFIG = {
     USE_MOCK: Boolean(process.env.CUSTOM_USE_MOCKS?.toLowerCase() === 'true'),
     APP_NAME: process.env.CUSTOM_APP_NAME || 'API',
   },
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  SWAGGER: {
+    HOST: process.env.SWAGGER_HOST || 'localhost',
+    PORT: process.env.SWAGGER_PORT || 8080,
+    COMPLETE_URL: process.env.SWAGGER_COMPLETE_URL,
+  },
 };
 
 export type EnvironmentConfig = typeof CONFIG;
